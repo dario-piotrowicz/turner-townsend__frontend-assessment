@@ -19,7 +19,6 @@ export class PlaylistPageComponent implements OnInit {
     this.playlist = this.playlistService.getPlaylist().pipe(
       catchError((error) => {
         this.error = error;
-        console.log({ error });
         return of({ name: '', content: [] });
       })
     );
