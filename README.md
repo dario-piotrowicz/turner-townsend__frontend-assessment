@@ -18,3 +18,7 @@ Nevertheless I have kept in mind the "We would like to see" items specified in t
 - In my implementation I am caching the playlist I receive from the provided URL, that again is quite overkill for such a simple application, but it does make sense since we can assume the playlist does not change very often so by caching it we allow the user to navigate throught the application (just from and to the home page in this simple app) without the need to download the playlist again (note: I could have gone one step further and save the list in local/session storage with an expiry time but it didn't make too much sense to go that far for this simple app).
 
 ## Challenges
+
+# Deployment
+
+The app is deployed at: https://tt-playlist-visualizer.netlify.app
