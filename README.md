@@ -1,3 +1,19 @@
-# Turner-Towsen Frontend-Assessment
+# Turner-Towsend Frontend-Assessment
 
 Link to assessment: https://github.com/turner-townsend/frontend-assessment
+
+## My thoughts
+
+This is a very simple assessment open to interpretation and open-ended, it also does not have a time limit so people could spend any amount of time working on it to make it as advanced as possible. Since it is an assessment to showcase one's web-development/Angular knowledge and coding style I decided not to spend more than a weekend on that (possibly less) and to showcase a simple solution which could be expanded upon.
+
+Nevertheless I have kept in mind the "We would like to see" items specified in the assessment README and made an effort to fulfil them as best as I can.
+
+## Comments
+
+- Since it has been asked to show an approach to styles I decided not to include libraries such as Angular Material or Bootstrap but to write the styles directly in Scss, I have used the BEM notation alongside SASS features.
+- The application is divided in modules divided by features/pages (a more granular level or modularization seemed accessive to me, I would have liked to put the LoadingService in a shared module but since it is coupled with the app component I thought it just made more sense to leave at the root level)
+- Such modules are dynamically lazy-loaded, this is naturally overkill for such a simple application (actually I was not even sure about using routing in the first place but I did since it is also specified in the assessment README) but anyways this showcases the general approach I would follow for a larger application.
+- I implemented the playlistItem component as an anchor element, I did so (instead of using a div for example) because it semantically makes more sense and especially because (thanks to the semantic) in this way the playlist is more accessible to all users (using screen-readers, no mouse, etc...)
+- For various parts of the application I would have liked to use css grid (like for the playlistItem component), but I opted for flex containers not to limit the target browsers (not sure if Turner & Towsend needs to cater for IE11 and/or older browsers)
+
+## Challenges
