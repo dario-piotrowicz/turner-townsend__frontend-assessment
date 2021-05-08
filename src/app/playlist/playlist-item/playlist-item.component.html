@@ -1,0 +1,13 @@
+<!-- <p>{{ data | json }}</p> -->
+<a class="playlist-item" [href]="data.url" target="_blank">
+  <img
+    [src]="data.artwork"
+    [alt]="data.name + 'art'"
+    class="playlist-item__img"
+  />
+  <div class="playlist-item__content-wrapper">
+    <p class="playlist-item__name">{{ data.name }}</p>
+    <small class="playlist-item__id">Id: {{ data.id }}</small>
+    <p class="playlist-item__curator">{{ data.curator_name }}</p>
+  </div>
+</a>

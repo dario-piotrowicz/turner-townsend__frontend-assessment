@@ -1,0 +1,7 @@
+<div class="playlist">
+  <h2 class="playlist__name">{{ playlistData.name }}</h2>
+  <div class="playlist__content-wrapper">
+    <app-playlist-item *ngFor="let item of playlistData.content" [data]="item">
+    </app-playlist-item>
+  </div>
+</div>
