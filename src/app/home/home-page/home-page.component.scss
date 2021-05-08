@@ -1,0 +1,11 @@
+@import "../../../assets/scss/utils.scss";
+.home {
+  padding-top: 2rem;
+  display: flex;
+  justify-content: center;
+  &__to-playlist-btn {
+    @extend %main-btn;
+    border-radius: 50px;
+    font-size: 1rem;
+  }
+}

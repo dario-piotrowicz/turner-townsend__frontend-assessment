@@ -1,0 +1,23 @@
+%main-btn {
+  padding: 1rem;
+  margin: 1rem;
+  border: 1px solid #999;
+  border-radius: 10px;
+  background: linear-gradient(
+    to right bottom,
+    rgb(194, 194, 194),
+    rgb(255, 255, 255)
+  );
+  box-shadow: 0 6px 10px #555;
+  cursor: pointer;
+  outline: none;
+  transition: box-shadow 0.1s;
+  color: #333;
+  text-decoration: none;
+
+  &:hover:not(:active),
+  &:focus:not(:active) {
+    transform: translateY(-3px);
+    box-shadow: 0px 10px 15px 1px #555;
+  }
+}
