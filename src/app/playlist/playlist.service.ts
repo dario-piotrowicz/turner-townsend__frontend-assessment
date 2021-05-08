@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
-import { finalize, switchMap, tap } from 'rxjs/operators';
+import { delay, finalize, switchMap, tap } from 'rxjs/operators';
 import { PlaylistData } from './playlist.model';
 import { LoadingService } from '../loading.service';
 
@@ -28,7 +28,7 @@ export class PlaylistService {
         return of({
           name: rawData.featuredPlaylists.name,
           content: rawData.featuredPlaylists.content ?? [],
-        });
+        }).pipe(delay(2000));
       }),
       tap((playlistData) => (this.cachedPlaylist = playlistData)),
       finalize(() => this.loading.setLoading(false))
