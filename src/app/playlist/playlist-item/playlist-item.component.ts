@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PlaylistItemData } from '../playlist.model';
 
 @Component({
@@ -6,10 +6,6 @@ import { PlaylistItemData } from '../playlist.model';
   templateUrl: './playlist-item.component.html',
   styleUrls: ['./playlist-item.component.scss'],
 })
-export class PlaylistItemComponent implements OnInit {
+export class PlaylistItemComponent {
   @Input() data: PlaylistItemData;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }
