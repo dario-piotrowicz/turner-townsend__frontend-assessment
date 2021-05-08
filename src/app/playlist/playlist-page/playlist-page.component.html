@@ -1,4 +1,4 @@
-<div *ngIf="playlist | async as playlistData; else loadingEl">
+<div *ngIf="playlist | async as playlistData">
   <app-playlist
     *ngIf="!error; else errorEl"
     [playlistData]="playlistData"
@@ -7,13 +7,3 @@
     <p>An error occurred when fetching the playlist</p>
   </ng-template>
 </div>
-<ng-template #loadingEl>
-  <div class="loading">
-    <span class="loading__text">Loading</span>
-    <img
-      src="../../../assets/imgs/music-icon.png"
-      alt="music-note"
-      class="loading__img"
-    />
-  </div>
-</ng-template>
