@@ -1,1 +1,11 @@
-<p>playlist-page works!</p>
+<div *ngIf="playlist | async as playlistData; else loadingEl">
+  <div *ngIf="!error; else errorEl">
+    {{ playlistData | json }}
+  </div>
+  <ng-template #errorEl>
+    <p>An error occurred when fetching the playlist</p>
+  </ng-template>
+</div>
+<ng-template #loadingEl>
+  <p>Loading...</p>
+</ng-template>
