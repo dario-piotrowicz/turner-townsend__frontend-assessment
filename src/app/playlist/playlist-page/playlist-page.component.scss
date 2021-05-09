@@ -1,0 +1,19 @@
+.playlist-page {
+  display: flex;
+  padding-top: 2rem;
+  justify-content: center;
+}
+
+.error {
+  $color: #c31515;
+  $bg-color: #fde0e6;
+  display: inline-block;
+  border: 1px solid $color;
+  background-color: $bg-color;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+
+  &__message {
+    color: $color;
+  }
+}
