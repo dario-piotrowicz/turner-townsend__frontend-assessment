@@ -7,9 +7,9 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
   {
-    path: 'playlist',
+    path: 'playlists',
     loadChildren: () =>
-      import('./playlist/playlist.module').then((m) => m.PlaylistModule),
+      import('./playlists/playlists.module').then((m) => m.PlaylistsModule),
   },
   {
     path: '**',

@@ -8,13 +8,12 @@ import {
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of, throwError } from 'rxjs';
-import { PlaylistData } from '../playlist.model';
-import { PlaylistService } from '../playlist.service';
+import { PlaylistsData } from '../playlists.model';
+import { PlaylistsService } from '../playlists.service';
+import { PlaylistsPageComponent } from './playlists-page.component';
 
-import { PlaylistPageComponent } from './playlist-page.component';
-
-const mockPlaylistData: PlaylistData = {
-  name: 'test playlist',
+const mockPlaylistsData: PlaylistsData = {
+  name: 'test playlists',
   content: [0, 1, 2, 3, 4].map((i) => ({
     id: `${i}`,
     name: `test song ${i}`,
@@ -25,8 +24,8 @@ const mockPlaylistData: PlaylistData = {
   })),
 };
 
-const mockPlaylistService = {
-  getPlaylist: () => of(mockPlaylistData),
+const mockPlaylistsService = {
+  getPlaylists: () => of(mockPlaylistsData),
 };
 
 const mockScrollerService = {
@@ -35,36 +34,36 @@ const mockScrollerService = {
 };
 
 @Component({
-  selector: 'app-playlist',
-  template: `<div class="playlist">
-    {{ playlistData.name }}_{{ playlistData.content.length }}
+  selector: 'app-playlists',
+  template: `<div class="playlists">
+    {{ playlistsData.name }}_{{ playlistsData.content.length }}
   </div>`,
 })
-class MockPlaylistComponent {
-  @Input() playlistData: PlaylistData;
+class MockPlaylistsComponent {
+  @Input() playlistsData: PlaylistsData;
 }
 
-describe('PlaylistPageComponent', () => {
-  let component: PlaylistPageComponent;
-  let fixture: ComponentFixture<PlaylistPageComponent>;
+describe('PlaylistsPageComponent', () => {
+  let component: PlaylistsPageComponent;
+  let fixture: ComponentFixture<PlaylistsPageComponent>;
   let el: DebugElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PlaylistPageComponent, MockPlaylistComponent],
+      declarations: [PlaylistsPageComponent, MockPlaylistsComponent],
       providers: [
-        { provide: PlaylistService, useValue: mockPlaylistService },
+        { provide: PlaylistsService, useValue: mockPlaylistsService },
         { provide: ViewportScroller, useValue: mockScrollerService },
       ],
     })
-      .overrideComponent(PlaylistPageComponent, {
+      .overrideComponent(PlaylistsPageComponent, {
         set: { changeDetection: ChangeDetectionStrategy.Default },
       })
       .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PlaylistPageComponent);
+    fixture = TestBed.createComponent(PlaylistsPageComponent);
     component = fixture.componentInstance;
     el = fixture.debugElement;
     fixture.detectChanges();
@@ -75,34 +74,34 @@ describe('PlaylistPageComponent', () => {
     expect(errorEl).toBeFalsy();
   });
 
-  it('should not display the playlist if an error occurred', () => {
-    const getPlaylistBackup = mockPlaylistService.getPlaylist;
-    mockPlaylistService.getPlaylist = () => throwError('An Error Occurred');
+  it('should not display the playlists if an error occurred', () => {
+    const getPlaylistsBackup = mockPlaylistsService.getPlaylists;
+    mockPlaylistsService.getPlaylists = () => throwError('An Error Occurred');
     component.ngOnInit();
     fixture.detectChanges();
-    const playlistEl = el.query(By.css('.playlist'));
-    expect(playlistEl).toBeFalsy();
-    mockPlaylistService.getPlaylist = getPlaylistBackup;
+    const playlistsEl = el.query(By.css('.playlists'));
+    expect(playlistsEl).toBeFalsy();
+    mockPlaylistsService.getPlaylists = getPlaylistsBackup;
   });
 
-  it('should display the playlist if no errors occurred', () => {
-    const playlistEl = el.query(By.css('.playlist')).nativeElement;
-    const playlistElText = playlistEl.innerText.toLowerCase();
-    expect(playlistElText).toEqual(
-      `${mockPlaylistData.name.toLowerCase()}_${
-        mockPlaylistData.content.length
+  it('should display the playlists if no errors occurred', () => {
+    const playlistsEl = el.query(By.css('.playlists')).nativeElement;
+    const playlistsElText = playlistsEl.innerText.toLowerCase();
+    expect(playlistsElText).toEqual(
+      `${mockPlaylistsData.name.toLowerCase()}_${
+        mockPlaylistsData.content.length
       }`
     );
   });
 
   it('should display an error message if an error occurred', () => {
-    const getPlaylistBackup = mockPlaylistService.getPlaylist;
-    mockPlaylistService.getPlaylist = () => throwError('An Error Occurred');
+    const getPlaylistsBackup = mockPlaylistsService.getPlaylists;
+    mockPlaylistsService.getPlaylists = () => throwError('An Error Occurred');
     component.ngOnInit();
     fixture.detectChanges();
     const errorEl = el.query(By.css('.error'));
     expect(errorEl).toBeTruthy();
-    mockPlaylistService.getPlaylist = getPlaylistBackup;
+    mockPlaylistsService.getPlaylists = getPlaylistsBackup;
   });
 
   it('should scroll to the top of the page when the to-top button is clicked', () => {

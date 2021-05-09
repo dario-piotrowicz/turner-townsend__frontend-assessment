@@ -4,7 +4,8 @@
   padding-top: 2rem;
   display: flex;
   justify-content: center;
-  &__to-playlist-btn {
+
+  &__to-playlists-btn {
     @extend %nav-btn;
   }
 }

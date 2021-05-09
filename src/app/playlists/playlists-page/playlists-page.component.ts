@@ -8,13 +8,13 @@ import {
 } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { PlaylistData } from '../playlist.model';
-import { PlaylistService } from '../playlist.service';
+import { PlaylistsData } from '../playlists.model';
+import { PlaylistsService } from '../playlists.service';
 
 @Component({
-  selector: 'app-playlist-page',
-  templateUrl: './playlist-page.component.html',
-  styleUrls: ['./playlist-page.component.scss'],
+  selector: 'app-playlists-page',
+  templateUrl: './playlists-page.component.html',
+  styleUrls: ['./playlists-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('toTopBtn', [
@@ -29,18 +29,18 @@ import { PlaylistService } from '../playlist.service';
     ]),
   ],
 })
-export class PlaylistPageComponent implements OnInit {
-  public playlist: Observable<PlaylistData>;
+export class PlaylistsPageComponent implements OnInit {
+  public playlists: Observable<PlaylistsData>;
   public error: any = null;
   public scrollToTopIsVisible = false;
 
   constructor(
-    private playlistService: PlaylistService,
+    private playlistsService: PlaylistsService,
     private scroller: ViewportScroller
   ) {}
 
   ngOnInit(): void {
-    this.playlist = this.playlistService.getPlaylist().pipe(
+    this.playlists = this.playlistsService.getPlaylists().pipe(
       catchError((error) => {
         this.error = error;
         return of({ name: '', content: [] });

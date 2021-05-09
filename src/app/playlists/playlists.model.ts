@@ -1,9 +1,9 @@
-export interface PlaylistData {
+export interface PlaylistsData {
   name: string;
-  content: PlaylistItemData[];
+  content: PlaylistsItemData[];
 }
 
-export interface PlaylistItemData {
+export interface PlaylistsItemData {
   id: string;
   kind: string;
   name: string;

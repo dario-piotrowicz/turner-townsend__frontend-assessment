@@ -3,16 +3,16 @@ import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { of, timer } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LoadingService } from '../loading.service';
-import { PlaylistService } from './playlist.service';
+import { PlaylistsService } from './playlists.service';
 
-const mockPlaylistName = 'test playlist';
+const mockPlaylistsName = 'test playlists';
 
 const mockHttpClient = {
   get: () =>
     timer(500).pipe(
       map(() => ({
         featuredPlaylists: {
-          name: mockPlaylistName,
+          name: mockPlaylistsName,
           content: [],
         },
       }))
@@ -23,45 +23,45 @@ const mockLoadingService = {
   setLoading: (_: boolean) => {},
 };
 
-describe('PlaylistService', () => {
-  let service: PlaylistService;
+describe('PlaylistsService', () => {
+  let service: PlaylistsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        PlaylistService,
+        PlaylistsService,
         { provide: HttpClient, useValue: mockHttpClient },
         { provide: LoadingService, useValue: mockLoadingService },
       ],
     });
-    service = TestBed.inject(PlaylistService);
+    service = TestBed.inject(PlaylistsService);
   });
 
-  it('should be created without a cached playlist', () => {
+  it('should be created without a cached playlists', () => {
     expect(service).toBeTruthy();
-    expect(service['cachedPlaylist']).toBeFalsy();
+    expect(service['cachedPlaylists']).toBeFalsy();
   });
 
-  it('should cache the playlist upon getPlaylist', fakeAsync(() => {
-    service.getPlaylist().subscribe(() => {});
+  it('should cache the playlists upon getPlaylists', fakeAsync(() => {
+    service.getPlaylists().subscribe(() => {});
     tick(5000);
-    expect(service['cachedPlaylist']).toBeTruthy();
+    expect(service['cachedPlaylists']).toBeTruthy();
   }));
 
-  it('should return the cached playlist if present upon getPlaylist (without the http get)', fakeAsync(() => {
-    service.getPlaylist().subscribe(() => {});
+  it('should return the cached playlists if present upon getPlaylists (without the http get)', fakeAsync(() => {
+    service.getPlaylists().subscribe(() => {});
     tick(5000);
     const getSpy = spyOn(mockHttpClient, 'get');
-    service.getPlaylist().subscribe((playlist) => {
-      expect(playlist.name).toEqual(mockPlaylistName);
+    service.getPlaylists().subscribe((playlists) => {
+      expect(playlists.name).toEqual(mockPlaylistsName);
     });
     tick(5000);
     expect(getSpy).not.toHaveBeenCalled();
   }));
 
-  it('should set and unset the loading getPlaylist', fakeAsync(() => {
+  it('should set and unset the loading getPlaylists', fakeAsync(() => {
     const loadingSpy = spyOn(mockLoadingService, 'setLoading');
-    service.getPlaylist().subscribe(() => {});
+    service.getPlaylists().subscribe(() => {});
     expect(loadingSpy).toHaveBeenCalledOnceWith(true);
     loadingSpy.calls.reset();
     tick(5000);
@@ -73,7 +73,7 @@ describe('PlaylistService', () => {
     const getBackup = mockHttpClient.get;
     mockHttpClient.get = () => of({} as any);
     let error: string;
-    service.getPlaylist().subscribe(
+    service.getPlaylists().subscribe(
       () => {},
       (err) => (error = err)
     );

@@ -1,0 +1,12 @@
+<a class="playlists-item" [href]="data.url" target="_blank">
+  <img
+    [src]="data.artwork"
+    [alt]="data.name + 'art'"
+    class="playlists-item__img"
+  />
+  <div class="playlists-item__content-wrapper">
+    <span class="playlists-item__name">{{ data.name }}</span>
+    <small class="playlists-item__id">Id: {{ data.id }}</small>
+    <span class="playlists-item__curator">{{ data.curatorName }}</span>
+  </div>
+</a>
