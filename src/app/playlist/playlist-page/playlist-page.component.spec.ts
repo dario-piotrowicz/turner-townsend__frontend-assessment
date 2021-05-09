@@ -1,4 +1,9 @@
-import { Component, DebugElement, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DebugElement,
+  Input,
+} from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of, throwError } from 'rxjs';
@@ -42,7 +47,11 @@ describe('PlaylistPageComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [PlaylistPageComponent, MockPlaylistComponent],
       providers: [{ provide: PlaylistService, useValue: mockPlaylistService }],
-    }).compileComponents();
+    })
+      .overrideComponent(PlaylistPageComponent, {
+        set: { changeDetection: ChangeDetectionStrategy.Default },
+      })
+      .compileComponents();
   });
 
   beforeEach(() => {
