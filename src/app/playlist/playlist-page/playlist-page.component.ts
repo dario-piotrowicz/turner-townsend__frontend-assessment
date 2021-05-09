@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { PlaylistData } from '../playlist.model';
@@ -8,6 +8,7 @@ import { PlaylistService } from '../playlist.service';
   selector: 'app-playlist-page',
   templateUrl: './playlist-page.component.html',
   styleUrls: ['./playlist-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlaylistPageComponent implements OnInit {
   public playlist: Observable<PlaylistData>;
