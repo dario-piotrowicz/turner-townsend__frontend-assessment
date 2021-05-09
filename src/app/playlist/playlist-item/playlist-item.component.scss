@@ -24,14 +24,18 @@
     font-weight: lighter;
     font-size: 1.5rem;
     margin: 0;
+    display: block;
   }
 
   &__id {
     opacity: 0.5;
+    display: block;
   }
 
   &__curator {
     font-style: italic;
+    display: block;
+    margin-top: 1rem;
   }
 
   @media only screen and (max-width: 450px) {

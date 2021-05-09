@@ -1,15 +1,15 @@
-<div class="playlist-page">
-  <div *ngIf="playlist | async as playlistData">
+<section class="playlist-page">
+  <ng-container *ngIf="playlist | async as playlistData">
     <app-playlist
       *ngIf="!error; else errorEl"
       [playlistData]="playlistData"
     ></app-playlist>
     <ng-template #errorEl>
-      <div class="error">
-        <p class="error__message">
+      <dialog class="error">
+        <span class="error__message">
           Ops! An error occurred when fecthing the playlist data
-        </p>
-      </div>
+        </span>
+      </dialog>
     </ng-template>
-  </div>
-</div>
+  </ng-container>
+</section>
