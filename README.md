@@ -25,4 +25,4 @@ Nevertheless I have kept in mind the "We would like to see" items specified in t
 
 # Deployment
 
-The app is deployed at: https://tt-playlist-visualizer.netlify.app
+The app is deployed at: https://tt-playlist-viewer.netlify.app
