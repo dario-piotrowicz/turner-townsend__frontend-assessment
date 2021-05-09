@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, finalize, switchMap, tap } from 'rxjs/operators';
-import { PlaylistData } from './playlist.model';
+import { PlaylistData, PlaylistItemData } from './playlist.model';
 import { LoadingService } from '../loading.service';
 
 @Injectable()
@@ -25,9 +25,15 @@ export class PlaylistService {
         if (!rawData || !rawData.featuredPlaylists) {
           return throwError('Wrong Playlist Data');
         }
+        const name: string = rawData.featuredPlaylists.name;
+        const rawContent: any[] = rawData.featuredPlaylists.content || [];
+        const content: PlaylistItemData[] = rawContent.map((data) => {
+          const { curator_name, ...itemData } = data;
+          return { ...itemData, curatorName: curator_name };
+        });
         return of({
-          name: rawData.featuredPlaylists.name,
-          content: rawData.featuredPlaylists.content || [],
+          name,
+          content,
         }).pipe(delay(2000));
       }),
       tap((playlistData) => (this.cachedPlaylist = playlistData)),

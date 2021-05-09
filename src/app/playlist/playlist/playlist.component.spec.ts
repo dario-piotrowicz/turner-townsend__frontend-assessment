@@ -10,7 +10,7 @@ const mockPlaylistData: PlaylistData = {
   content: [0, 1, 2, 3, 4].map((i) => ({
     id: `${i}`,
     name: `test song ${i}`,
-    curator_name: 'test curator',
+    curatorName: 'test curator',
     url: `test-url-${i}`,
     artwork: `test-artwork-${i}`,
     kind: '',

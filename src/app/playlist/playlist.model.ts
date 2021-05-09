@@ -8,6 +8,6 @@ export interface PlaylistItemData {
   kind: string;
   name: string;
   url: string;
-  curator_name: string;
+  curatorName: string;
   artwork: string;
 }
