@@ -1,0 +1,21 @@
+.footer {
+  position: absolute;
+  box-sizing: border-box;
+  bottom: 0;
+  background-color: #555;
+  color: #fff;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1rem;
+
+  &__author,
+  &__date {
+    font-style: italic;
+  }
+
+  &__divider {
+    margin: 0 0.5rem;
+  }
+}

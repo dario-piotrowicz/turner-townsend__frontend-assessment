@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { AppComponent } from './app.component';
+import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { LoadingService } from './loading.service';
 import { LoadingComponent } from './loading/loading.component';
@@ -16,7 +17,12 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [AppComponent, HeaderComponent, LoadingComponent],
+      declarations: [
+        AppComponent,
+        HeaderComponent,
+        LoadingComponent,
+        FooterComponent,
+      ],
       providers: [{ provide: LoadingService, useValue: mockLoadingService }],
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);

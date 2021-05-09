@@ -6,9 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { LoadingComponent } from './loading/loading.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, LoadingComponent],
+  declarations: [AppComponent, HeaderComponent, LoadingComponent, FooterComponent],
   imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
