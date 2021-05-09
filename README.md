@@ -19,6 +19,8 @@ Nevertheless I have kept in mind the "We would like to see" items specified in t
 
 ## Challenges
 
+- Regarding unit tests, I have placed mock data in different spec files which may not be ideal, I know that some prefer to have the mock data in specific mock files and I do agree that that is a good way to make the files more concise and the mocks more reusable, but I slightly prefer, given that the mocks are relatively small, to place them directly in the spec files themselves as not to pollute the project with too many testing related files (I am aware that this is not very DRY, but I believe that DRY can sometimes be ignored for the sake of semplicity and well structured code).
+
 # Deployment
 
 The app is deployed at: https://tt-playlist-visualizer.netlify.app
