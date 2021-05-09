@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -28,6 +29,11 @@ const mockPlaylistService = {
   getPlaylist: () => of(mockPlaylistData),
 };
 
+const mockScrollerService = {
+  getScrollPosition: () => [0, 550],
+  scrollToPosition: ([_x, _y]) => {},
+};
+
 @Component({
   selector: 'app-playlist',
   template: `<div class="playlist">
@@ -46,7 +52,10 @@ describe('PlaylistPageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [PlaylistPageComponent, MockPlaylistComponent],
-      providers: [{ provide: PlaylistService, useValue: mockPlaylistService }],
+      providers: [
+        { provide: PlaylistService, useValue: mockPlaylistService },
+        { provide: ViewportScroller, useValue: mockScrollerService },
+      ],
     })
       .overrideComponent(PlaylistPageComponent, {
         set: { changeDetection: ChangeDetectionStrategy.Default },
@@ -94,5 +103,27 @@ describe('PlaylistPageComponent', () => {
     const errorEl = el.query(By.css('.error'));
     expect(errorEl).toBeTruthy();
     mockPlaylistService.getPlaylist = getPlaylistBackup;
+  });
+
+  it('should scroll to the top of the page when the to-top button is clicked', () => {
+    const scrollToPositionSpy = spyOn(mockScrollerService, 'scrollToPosition');
+    component.toTopClickEventHandler();
+    expect(scrollToPositionSpy).toHaveBeenCalledOnceWith([0, 0]);
+  });
+
+  it('should display the to-top button upon scrolling if the y position is at least 500', () => {
+    const getScrollPositionBackup = mockScrollerService.getScrollPosition;
+    mockScrollerService.getScrollPosition = () => [0, 500];
+    window.dispatchEvent(new Event('scroll'));
+    expect(component.scrollToTopIsVisible).toBeTrue();
+    mockScrollerService.getScrollPosition = getScrollPositionBackup;
+  });
+
+  it('should not display the to-top button upon scrolling if the y position is not at least 500', () => {
+    const getScrollPositionBackup = mockScrollerService.getScrollPosition;
+    mockScrollerService.getScrollPosition = () => [0, 200];
+    window.dispatchEvent(new Event('scroll'));
+    expect(component.scrollToTopIsVisible).toBeFalse();
+    mockScrollerService.getScrollPosition = getScrollPositionBackup;
   });
 });

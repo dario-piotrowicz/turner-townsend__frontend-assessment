@@ -12,4 +12,16 @@
       </dialog>
     </ng-template>
   </ng-container>
+  <button
+    *ngIf="scrollToTopIsVisible"
+    class="to-top-btn"
+    (click)="toTopClickEventHandler()"
+    [@toTopBtn]
+  >
+    <img
+      src="../../../assets/imgs/arrow_top.png"
+      alt="arrow top"
+      class="to-top-btn__img"
+    />
+  </button>
 </section>
