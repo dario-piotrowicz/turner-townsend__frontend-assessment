@@ -22,12 +22,12 @@ export class PlaylistService {
     this.loading.setLoading(true);
     return this.http.get<any>(this.playlistUrl).pipe(
       switchMap((rawData) => {
-        if (!rawData && !rawData.featuredPlaylists) {
+        if (!rawData || !rawData.featuredPlaylists) {
           return throwError('Wrong Playlist Data');
         }
         return of({
           name: rawData.featuredPlaylists.name,
-          content: rawData.featuredPlaylists.content ?? [],
+          content: rawData.featuredPlaylists.content || [],
         }).pipe(delay(2000));
       }),
       tap((playlistData) => (this.cachedPlaylist = playlistData)),
