@@ -1,9 +1,11 @@
+@import "../../assets/scss/colors.scss";
+
 .footer {
   position: absolute;
   box-sizing: border-box;
   bottom: 0;
-  background-color: #555;
-  color: #fff;
+  background-color: $header-footer-bg-color;
+  color: $header-footer-color;
   width: 100%;
   padding: 0.5rem 1rem;
   display: flex;
