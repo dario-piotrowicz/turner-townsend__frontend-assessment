@@ -39,13 +39,13 @@ describe('PlaylistsService', () => {
 
   it('should be created without a cached playlists', () => {
     expect(service).toBeTruthy();
-    expect(service['cachedPlaylists']).toBeFalsy();
+    expect((service as any).cachedPlaylists).toBeFalsy();
   });
 
   it('should cache the playlists upon getPlaylists', fakeAsync(() => {
     service.getPlaylists().subscribe(() => {});
     tick(5000);
-    expect(service['cachedPlaylists']).toBeTruthy();
+    expect((service as any).cachedPlaylists).toBeTruthy();
   }));
 
   it('should return the cached playlists if present upon getPlaylists (without the http get)', fakeAsync(() => {
@@ -68,7 +68,7 @@ describe('PlaylistsService', () => {
     expect(loadingSpy).toHaveBeenCalledOnceWith(false);
   }));
 
-  it("should return an error observable and unset the loading if the get doens't return correct data", fakeAsync(() => {
+  it('should return an error observable and unset the loading if the get doens\'t return correct data', fakeAsync(() => {
     const loadingSpy = spyOn(mockLoadingService, 'setLoading');
     const getBackup = mockHttpClient.get;
     mockHttpClient.get = () => of({} as any);

@@ -8,14 +8,14 @@ describe('LoadingService', () => {
     service = new LoadingService();
   });
 
-  it('should start with _isLoading set to false', () => {
-    expect(service['_isLoading'].value).toEqual(false);
+  it('should start with isLoadingSubject set to false', () => {
+    expect( (service as any).isLoadingSubject.value).toEqual(false);
   });
 
-  it('should update _isLoading and emit with the correct value upon setLoading', () => {
-    const _isLoading = service['_isLoading'];
+  it('should update isLoadingSubject and emit with the correct value upon setLoading', () => {
+    const isLoading = (service as any).isLoadingSubject;
     service.setLoading(true);
-    expect(_isLoading.value).toEqual(true);
+    expect(isLoading.value).toEqual(true);
     service.isLoading
       .pipe(take(1))
       .subscribe((value) => expect(value).toEqual(true));

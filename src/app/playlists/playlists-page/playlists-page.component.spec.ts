@@ -30,7 +30,7 @@ const mockPlaylistsService = {
 
 const mockScrollerService = {
   getScrollPosition: () => [0, 550],
-  scrollToPosition: ([_x, _y]) => {},
+  scrollToPosition: ([x, y]) => {},
 };
 
 @Component({

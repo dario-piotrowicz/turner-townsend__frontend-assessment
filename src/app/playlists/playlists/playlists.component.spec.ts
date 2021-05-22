@@ -46,7 +46,7 @@ describe('PlaylistsComponent', () => {
     fixture.detectChanges();
   });
 
-  it("should display the provided playlists' name", () => {
+  it('should display the provided playlists\' name', () => {
     const playlistsNameEl = el.query(By.css('.playlists__name')).nativeElement;
     expect(playlistsNameEl.innerText.toLowerCase()).toEqual(
       mockPlaylistsData.name.toLowerCase()
@@ -56,8 +56,8 @@ describe('PlaylistsComponent', () => {
   it('should display all the playlistsItems with the correct data', () => {
     const playlistsItemEls = el.queryAll(By.css('.playlists-item'));
     expect(playlistsItemEls.length).toEqual(5);
-    playlistsItemEls.forEach((el, idx) => {
-      const elText = el.nativeElement.innerText;
+    playlistsItemEls.forEach((itemEl, idx) => {
+      const elText = itemEl.nativeElement.innerText;
       const itemData = mockPlaylistsData.content[idx];
       expect(elText).toEqual(`${itemData.name}_${itemData.id}_${itemData.url}`);
     });

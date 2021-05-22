@@ -10,7 +10,7 @@ import { PlaylistsData, PlaylistsItemData } from '../playlists.model';
 export class PlaylistsComponent {
   @Input() playlistsData: PlaylistsData;
 
-  playlistsTrackByFn(_: number, playlist: PlaylistsItemData) {
+  playlistsTrackByFn(_: number, playlist: PlaylistsItemData): string {
     return playlist.id;
   }
 }
