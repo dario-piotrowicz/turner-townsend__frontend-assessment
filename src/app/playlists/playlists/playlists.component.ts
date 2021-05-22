@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { PlaylistsData } from '../playlists.model';
+import { PlaylistsData, PlaylistsItemData } from '../playlists.model';
 
 @Component({
   selector: 'app-playlists',
@@ -9,4 +9,8 @@ import { PlaylistsData } from '../playlists.model';
 })
 export class PlaylistsComponent {
   @Input() playlistsData: PlaylistsData;
+
+  playlistsTrackByFn(_: number, playlist: PlaylistsItemData) {
+    return playlist.id;
+  }
 }

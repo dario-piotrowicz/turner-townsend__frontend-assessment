@@ -2,7 +2,7 @@
   <h2 class="playlists__name">{{ playlistsData.name }}</h2>
   <div class="playlists__content-wrapper">
     <app-playlists-item
-      *ngFor="let item of playlistsData.content"
+      *ngFor="let item of playlistsData.content; trackBy"
       [data]="item"
     >
     </app-playlists-item>
