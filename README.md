@@ -1,6 +1,9 @@
 # Turner-Towsend Frontend-Assessment
 
-> Link to assessment: https://github.com/turner-townsend/frontend-assessment
+> [Assessment Intructions](./ASSESSMENT_README.md)
+
+\
+&NewLine;
 
 ## My thoughts
 
@@ -23,6 +26,6 @@ Nevertheless I have kept in mind the "We would like to see" items specified in t
 - Regarding unit tests, I have placed mock data in different spec files which may not be ideal, I know that some prefer to have the mock data in specific mock files and I do agree that that is a good way to make the files more concise and the mocks more reusable, but I slightly prefer, given that the mocks are relatively small, to place them directly in the spec files themselves as not to pollute the project with too many testing related files (I am aware that this is not very DRY, but I believe that DRY can sometimes be ignored for the sake of semplicity and well structured code).
 - In order to unit test the PlaylistsPage component I had to override the component in the TestBed.configureTestingModule so that it would have its change detection strategy set to Default. This doesn't seem optimal and changing the component's behavior when testing it does concern me, that being said I'd imagine this would be fine as long as we know what we're doing and what we're testing (besides the Default change detection strategy practically only adds extra change detection runs compared to OnPush, so if the tests are wrritten correctly whilst keeping that in mind they should still be valid).
 
-# Deployment
+## Deployment
 
 The app is deployed at: https://tt-playlists-viewer.netlify.app
